@@ -7,6 +7,11 @@ var levels: Array[String] = [
     "res://scenes/Level3.tscn"
 ]
 
+@onready var task_manager: TaskManager = TaskManager.new()
+
+func _ready() -> void:
+	add_child(task_manager)
+
 func start_game() -> void:
 	current_level_index = 0
 	load_current_level()
