@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://m84rpvmi1y0t"]
+
+[ext_resource type="Script" uid="uid://bcfn44e3ykgbu" path="res://scripts/level_1.gd" id="1_6ovph"]
+[ext_resource type="PackedScene" uid="uid://dbupdfn2tmfmv" path="res://scenes/player.tscn" id="2_bwv4p"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bwv4p"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_odhdn"]
+size = Vector2(50, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dw26h"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bwv4p"]
+
+[sub_resource type="Sky" id="Sky_odhdn"]
+sky_material = SubResource("ProceduralSkyMaterial_bwv4p")
+
+[sub_resource type="Environment" id="Environment_dw26h"]
+background_mode = 2
+sky = SubResource("Sky_odhdn")
+ambient_light_source = 3
+tonemap_mode = 3
+
+[node name="Level1" type="Node3D"]
+script = ExtResource("1_6ovph")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 33.219055, 30.438078)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("2_bwv4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3254486, 0)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_bwv4p")
+
+[node name="PlaneMesh" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("PlaneMesh_odhdn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_dw26h")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dw26h")
