@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b34k2ao7bkehe"]
+
+[ext_resource type="PackedScene" uid="uid://dfnnmpgjhveef" path="res://assets/models/crane/hero_prop_-_harbour_crane.glb" id="1_w5fhp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jvixv"]
+
+[node name="Crane" type="Node3D"]
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_w5fhp")]
+transform = Transform3D(0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(3.8229246, 0, 0, 0, 2.1282897, 0, 0, 0, 3.3397875, 0, 1.0902855, -0.6089263)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_jvixv")

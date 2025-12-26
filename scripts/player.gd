@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export var mouse_sensitivity: float = 0.003
 
 @onready var camera_pivot: Node3D = $CameraPivot
+@onready var anim_player: AnimationPlayer = $Visual/BaseCharacter/AnimationPlayer
 
 var has_helmet: bool = false
 var has_vest: bool = false
@@ -40,7 +41,14 @@ func _physics_process(delta):
     else:
         if Input.is_action_just_pressed("jump"):
             velocity.y = jump_velocity
-
+    if is_on_floor():
+        if velocity.length() > 0.1:
+            if anim_player.current_animation != "walking/mixamo_com": # Замени на свое имя
+                anim_player.play("walking/mixamo_com")
+        else:
+            if anim_player.current_animation != "idle/mixamo_com": # Замени на свое имя
+                anim_player.play("idle/mixamo_com")
+                
     move_and_slide()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -55,15 +63,52 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func equip_helmet():
     has_helmet = true
-    $Visual/HelmetVisual.visible = true
+    %HelmetVisual.visible = true
     GameManager.task_manager.submit_action("put_helmet")
 
 func equip_vest():
     has_vest = true
-    $Visual/VestVisual.visible = true
+    %VestVisual.visible = true
     GameManager.task_manager.submit_action("put_vest")
     
 func pick_toolbox():
     has_toolbox = true
-    $Visual/ToolBoxVisual.visible = true
+    %ToolBoxVisual.visible = true
     GameManager.task_manager.submit_action("pick_toolbox")
+
+func _ready():
+    # Проверяем, есть ли отложенные данные для загрузки
+    if GameManager.pending_load_data.has("player_data"):
+        apply_save_data(GameManager.pending_load_data["player_data"])
+        
+        # Восстанавливаем прогресс заданий здесь же или в скрипте уровня
+        # Но так как TaskManager глобальный, нам нужно просто обновить индекс
+        if GameManager.pending_load_data.has("task_index"):
+            GameManager.task_manager.current_task_index = GameManager.pending_load_data["task_index"]
+
+# Метод упаковки данных
+func get_save_data() -> Dictionary:
+    return {
+        "pos_x": global_position.x,
+        "pos_y": global_position.y,
+        "pos_z": global_position.z,
+        "rot_y": rotation.y, # Сохраняем поворот тела
+        "pivot_x": camera_pivot.rotation.x, # Сохраняем наклон головы
+        "has_helmet": has_helmet,
+        "has_vest": has_vest,
+        "has_toolbox": has_toolbox
+    }
+
+# Метод распаковки данных
+func apply_save_data(data: Dictionary):
+    global_position = Vector3(data["pos_x"], data["pos_y"], data["pos_z"])
+    rotation.y = data["rot_y"]
+    camera_pivot.rotation.x = data["pivot_x"]
+    
+    # Восстанавливаем экипировку
+    if data["has_helmet"]:
+        equip_helmet()
+    if data["has_vest"]:
+        equip_vest()
+    if data["has_toolbox"]:
+        pick_toolbox()

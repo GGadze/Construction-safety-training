@@ -52,14 +52,21 @@ theme_override_constants/separation = 20
 alignment = 1
 
 [node name="ButtonStart" type="Button" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(250, 60)
+custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_elqb8")
 text = "Начать обучение"
 
+[node name="ButtonContinue" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_elqb8")
+text = "Продолжить обучение"
+
 [node name="ButtonExit" type="Button" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(250, 60)
+custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_elqb8")

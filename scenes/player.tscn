@@ -1,20 +1,20 @@
 [gd_scene load_steps=7 format=3 uid="uid://dbupdfn2tmfmv"]
 
 [ext_resource type="Script" uid="uid://ch1bkg6cxtirm" path="res://scripts/Player.gd" id="1_3vyb7"]
-[ext_resource type="PackedScene" uid="uid://b8qi7b23wrmkp" path="res://assets/models/worker/model.glb" id="2_g2els"]
 [ext_resource type="PackedScene" uid="uid://dm13ha81tfnsr" path="res://assets/models/helmet/helmet.glb" id="3_dqkch"]
 [ext_resource type="PackedScene" uid="uid://c1ngq7axrrskn" path="res://assets/models/vest.glb" id="4_qlg0r"]
 [ext_resource type="PackedScene" uid="uid://dib5g0haj2v83" path="res://assets/models/toolbox/toolbox.glb" id="5_qlg0r"]
+[ext_resource type="PackedScene" uid="uid://ccsj183xtathc" path="res://scenes/base_character.tscn" id="5_tuyoq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qhqgy"]
-radius = 0.4
-height = 1.7708985
+radius = 0.37304688
+height = 1.4165981
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_3vyb7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-0.9999987, 0, 0.0016230656, 0, 1.0730625, 0, -0.0016230656, 0, -0.9999987, 0, -0.038039215, 0)
+transform = Transform3D(-1.564998, 0, 0.0023842833, 0, 1.577, 0, -0.0025400978, 0, -1.4689981, 0, 0.28432968, 0)
 shape = SubResource("CapsuleShape3D_qhqgy")
 
 [node name="CameraPivot" type="Node3D" parent="."]
@@ -26,26 +26,76 @@ transform = Transform3D(1, 0, 0, 0, 0.9659257, 0.25881898, 0, -0.25881898, 0.965
 [node name="Visual" type="Node3D" parent="."]
 transform = Transform3D(-0.9999987, 0, 0.0016230656, 0, 1, 0, -0.0016230656, 0, -0.9999987, 0, 0, 0)
 
-[node name="WorkerModel" parent="Visual" instance=ExtResource("2_g2els")]
+[node name="BaseCharacter" parent="Visual" instance=ExtResource("5_tuyoq")]
+transform = Transform3D(114.78, 0, -1.8398831e-08, 0, 114.78, 0, 1.8398831e-08, 0, 114.78, 0, -0.8731489, 0)
 
-[node name="HelmetVisual" type="Node3D" parent="Visual"]
-transform = Transform3D(-0.29, 0, -4.3743057e-08, 0, 0.29, 0, 4.3743057e-08, 0, -0.29, -0.012092684, 0.79157305, -0.021619363)
+[node name="Skeleton3D" parent="Visual/BaseCharacter" index="0"]
+bones/0/rotation = Quaternion(-0.0050572823, 0.08653453, -0.029466787, 0.99580014)
+bones/1/rotation = Quaternion(0.008038406, -0.0065682195, 0.018625189, 0.9997727)
+bones/2/rotation = Quaternion(0.014301606, -0.020186208, 0.006506825, 0.9996728)
+bones/4/rotation = Quaternion(-0.014718189, -0.010171927, -0.008436378, 0.9998043)
+bones/5/rotation = Quaternion(-0.011859475, -0.03348297, 0.0031001773, 0.99936414)
+bones/7/rotation = Quaternion(-0.6831036, -0.38013545, 0.42656386, -0.4548734)
+bones/8/rotation = Quaternion(0.4967647, -0.01770095, -0.05184262, 0.8661547)
+bones/9/rotation = Quaternion(0.01240381, -0.00810087, 0.31130126, 0.95019585)
+bones/10/rotation = Quaternion(-0.07629259, 0.52537346, 0.16221862, 0.8317736)
+bones/11/rotation = Quaternion(0.045443177, 0.9957342, -0.008693576, 0.07983049)
+bones/12/rotation = Quaternion(0.17396627, 0.00950305, 0.15678322, 0.97214437)
+bones/13/rotation = Quaternion(0.06789913, -0.11129421, -0.08533686, 0.9877859)
+bones/15/rotation = Quaternion(0.60907406, -0.37126356, 0.5665823, 0.41252473)
+bones/16/rotation = Quaternion(0.4570677, -0.1172771, 0.1681027, 0.8654922)
+bones/17/rotation = Quaternion(0.011308504, 0.009794654, -0.27974108, 0.9599589)
+bones/18/rotation = Quaternion(0.053038713, -0.23116842, -0.06132818, 0.96952933)
+bones/19/rotation = Quaternion(0.05038607, -0.8087062, -0.0795116, 0.580632)
+bones/20/rotation = Quaternion(0.40224105, -0.10257228, -0.21242884, 0.88462144)
+bones/21/rotation = Quaternion(-0.14245641, -0.0952573, -0.08986431, 0.9810997)
+bones/23/rotation = Quaternion(0.0008858219, 0.18191046, 0.9830954, -0.02076825)
+bones/24/rotation = Quaternion(-0.5772344, 0.012980753, 0.058627486, 0.8143678)
+bones/25/rotation = Quaternion(0.56035197, -0.03277433, 0.059484348, 0.8254655)
+bones/26/rotation = Quaternion(0.3233274, -0.115740016, 0.006578415, 0.93915945)
+bones/28/rotation = Quaternion(-0.102076, 0.060036507, 0.98965317, -0.0810116)
+bones/29/rotation = Quaternion(-0.14791879, -0.01563241, -0.010619806, 0.98881894)
+bones/30/rotation = Quaternion(0.5855801, 0.042040363, -0.12609378, 0.79964304)
+bones/31/rotation = Quaternion(0.26418617, 0.06616283, -0.015957404, 0.96206737)
+
+[node name="BoneAttachment_Head" type="BoneAttachment3D" parent="Visual/BaseCharacter/Skeleton3D" index="1"]
+transform = Transform3D(0.9998829, 0.013541065, -0.007128451, -0.013028789, 0.99762917, 0.067574054, 0.008026574, -0.06747326, 0.9976888, 0.00024563642, 0.016835706, -5.807713e-05)
+bone_name = "mixamorig_Head"
+bone_idx = 5
+
+[node name="HelmetVisual" type="Node3D" parent="Visual/BaseCharacter/Skeleton3D/BoneAttachment_Head"]
+unique_name_in_owner = true
+transform = Transform3D(-0.0027710663, 6.485624e-05, -0.00029935295, 8.608156e-05, 0.0027798114, -0.00019458488, 0.00029395326, -0.0002026497, -0.002764986, -0.00016101281, 0.00093026273, 0.00010610343)
 visible = false
 
-[node name="Sketchfab_Scene" parent="Visual/HelmetVisual" instance=ExtResource("3_dqkch")]
+[node name="Sketchfab_Scene" parent="Visual/BaseCharacter/Skeleton3D/BoneAttachment_Head/HelmetVisual" instance=ExtResource("3_dqkch")]
 
-[node name="VestVisual" type="Node3D" parent="Visual"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6411226, 0.18249291, 0.5549419)
+[node name="BoneAttachment_Chest" type="BoneAttachment3D" parent="Visual/BaseCharacter/Skeleton3D" index="2"]
+transform = Transform3D(0.99683344, 0.0055688405, 0.07932159, -0.006616732, 0.9998942, 0.012954015, -0.079241075, -0.013437837, 0.99676496, 0.00022139944, 0.014289913, -5.4268516e-05)
+bone_name = "mixamorig_Spine2"
+bone_idx = 3
+
+[node name="VestVisual" type="Node3D" parent="Visual/BaseCharacter/Skeleton3D/BoneAttachment_Chest"]
+unique_name_in_owner = true
+transform = Transform3D(0.008675324, -0.00012044186, 0.0007929234, 0.00012377393, 0.008711384, -3.0979398e-05, -0.0007924097, 4.211277e-05, 0.008676111, -0.0055175014, -0.002663151, 0.0055392836)
 visible = false
 
-[node name="vest" parent="Visual/VestVisual" instance=ExtResource("4_qlg0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.927946e-05, 0, 0.024188757)
+[node name="vest" parent="Visual/BaseCharacter/Skeleton3D/BoneAttachment_Chest/VestVisual" instance=ExtResource("4_qlg0r")]
+transform = Transform3D(1, 0, 0, 0, 1.066917, 0, 0, 0, 1, 0.059800684, 0, 0.05967349)
 
-[node name="vest2" parent="Visual/VestVisual" instance=ExtResource("4_qlg0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0007176399, 0, -0.4421438)
+[node name="vest2" parent="Visual/BaseCharacter/Skeleton3D/BoneAttachment_Chest/VestVisual" instance=ExtResource("4_qlg0r")]
+transform = Transform3D(1, -2.3283064e-10, -1.4901161e-08, 4.656613e-10, 1.0669171, 4.656613e-10, -1.4901161e-08, -9.313226e-10, 1, 0.06416869, 0.00023502111, -0.5112241)
 
-[node name="ToolBoxVisual" type="Node3D" parent="Visual"]
-transform = Transform3D(-1.09, 0, -9.534415e-08, 0, 1.09, 0, 9.534415e-08, 0, -1.09, -0.8921567, 0.16102065, 0.076999724)
+[node name="BoneAttachment_Hand" type="BoneAttachment3D" parent="Visual/BaseCharacter/Skeleton3D" index="3"]
+transform = Transform3D(0.63555366, 0.0054616556, 0.7720369, 0.21373662, -0.9621364, -0.16914505, 0.74188143, 0.27251354, -0.6126569, -0.0036339408, 0.009794623, 5.5522658e-05)
+bone_name = "mixamorig_RightHand"
+bone_idx = 18
+
+[node name="ToolBoxVisual" type="Node3D" parent="Visual/BaseCharacter/Skeleton3D/BoneAttachment_Hand"]
+unique_name_in_owner = true
+transform = Transform3D(-0.0036734883, 0.0018399006, -0.008561683, 0.0019276628, -0.008886835, -0.0027368625, -0.008542348, -0.0027966148, 0.0030641994, -0.0002234996, 0.0024017468, 0.0009291407)
 visible = false
 
-[node name="toolbox" parent="Visual/ToolBoxVisual" instance=ExtResource("5_qlg0r")]
+[node name="toolbox" parent="Visual/BaseCharacter/Skeleton3D/BoneAttachment_Hand/ToolBoxVisual" instance=ExtResource("5_qlg0r")]
+
+[editable path="Visual/BaseCharacter"]

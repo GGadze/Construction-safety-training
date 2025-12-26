@@ -1,3 +1,370 @@
-[gd_scene format=3 uid="uid://c8bxyuj8qymcg"]
+[gd_scene load_steps=29 format=3 uid="uid://c8bxyuj8qymcg"]
+
+[ext_resource type="Script" uid="uid://bl0wtb4hdkwdd" path="res://scripts/Level3.gd" id="1_3iwpl"]
+[ext_resource type="Texture2D" uid="uid://bn43e4grmw5ig" path="res://assets/textures/dirt.png" id="2_kpqvn"]
+[ext_resource type="PackedScene" uid="uid://dbupdfn2tmfmv" path="res://scenes/player.tscn" id="3_thei6"]
+[ext_resource type="Script" uid="uid://dwvv4elm5d0k" path="res://scripts/StartPanel.gd" id="4_iw2mh"]
+[ext_resource type="Script" uid="uid://cg8dabslkuqam" path="res://scripts/finish_panel.gd" id="5_iw2mh"]
+[ext_resource type="PackedScene" uid="uid://coioan6qs2iv5" path="res://scenes/return_zone.tscn" id="5_opw0y"]
+[ext_resource type="PackedScene" uid="uid://b34k2ao7bkehe" path="res://scenes/crane.tscn" id="6_g7sqe"]
+[ext_resource type="Script" uid="uid://d2rcxxid8on7d" path="res://scenes/finish_zone.gd" id="7_opw0y"]
+[ext_resource type="Script" uid="uid://btijroix1y37k" path="res://scripts/crane_control_zone.gd" id="7_turoa"]
+[ext_resource type="Script" uid="uid://gob1knuyetyt" path="res://scripts/load_zone.gd" id="8_kpqvn"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1fmh2"]
+sky_top_color = Color(0.17014498, 0.5024891, 0.85363823, 1)
+sky_horizon_color = Color(0.73498404, 0.64238495, 0.49162, 1)
+
+[sub_resource type="Sky" id="Sky_odhdn"]
+sky_material = SubResource("ProceduralSkyMaterial_1fmh2")
+
+[sub_resource type="Environment" id="Environment_t3dp5"]
+background_mode = 2
+sky = SubResource("Sky_odhdn")
+ambient_light_source = 3
+tonemap_mode = 3
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kid5y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76388"]
+albedo_color = Color(0.81117415, 0.37997606, 1.92523e-07, 1)
+albedo_texture = ExtResource("2_kpqvn")
+roughness = 0.8
+uv1_scale = Vector3(15, 15, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qtcjj"]
+material = SubResource("StandardMaterial3D_76388")
+size = Vector2(200, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rljsv"]
+size = Vector3(200, 0.1, 200)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v36no"]
+bg_color = Color(0, 0, 0, 0.8117647)
+
+[sub_resource type="Animation" id="Animation_svatc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FailLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FailLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_76388"]
+resource_name = "fail_fade"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FailLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FailLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ecr63"]
+_data = {
+&"RESET": SubResource("Animation_svatc"),
+&"fail_fade": SubResource("Animation_76388")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mw3i8"]
+size = Vector3(2.0161743, 1, 1.3699341)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3iwpl"]
+transparency = 1
+albedo_color = Color(0, 0.7176471, 0.95686275, 0.32941177)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kpqvn"]
+material = SubResource("StandardMaterial3D_3iwpl")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ddxw6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_thei6"]
+size = Vector3(1.8007813, 1, 1.7860107)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ro4ur"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.19607843)
+
+[sub_resource type="BoxMesh" id="BoxMesh_iw2mh"]
+material = SubResource("StandardMaterial3D_ro4ur")
 
 [node name="Level3" type="Node3D"]
+script = ExtResource("1_3iwpl")
+
+[node name="Enviorment" type="Node3D" parent="."]
+
+[node name="SunLight" type="DirectionalLight3D" parent="Enviorment"]
+transform = Transform3D(0.8660254, -0.35355338, 0.35355338, 0, 0.70710677, 0.70710677, -0.5, -0.6123724, 0.6123724, 0, 33.219055, 30.438078)
+light_energy = 0.8
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviorment"]
+environment = SubResource("Environment_t3dp5")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_kid5y")
+
+[node name="PlaneMesh" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("PlaneMesh_qtcjj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_rljsv")
+
+[node name="Player" parent="." instance=ExtResource("3_thei6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.154043, 7.184482)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StartPanel" type="Panel" parent="CanvasLayer"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v36no")
+script = ExtResource("4_iw2mh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/StartPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.5
+offset_top = -175.0
+offset_right = 176.5
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="LabelTitle" type="Label" parent="CanvasLayer/StartPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Задание"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelTasks" type="Label" parent="CanvasLayer/StartPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Выполните задания в следующем порядке:
+
+1. Остановите работу крана,
+пройдя в специальную зону
+2. Пройдите в потенциально опасной
+зоне под краном
+3. Повторите то же самое со следующим краном"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonStart" type="Button" parent="CanvasLayer/StartPanel/VBoxContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Приступить к заданию!"
+
+[node name="FinishPanel" type="Panel" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v36no")
+script = ExtResource("5_iw2mh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FinishPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.5
+offset_top = -175.0
+offset_right = 176.5
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="LabelTitle" type="Label" parent="CanvasLayer/FinishPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Поздравляем!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelTasks" type="Label" parent="CanvasLayer/FinishPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Вы успешно справились
+со всеми заданиями!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonEnd" type="Button" parent="CanvasLayer/FinishPanel/VBoxContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Выйти в меню"
+
+[node name="FailLabel" type="Label" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.92941177, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "Вы провалили задание!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_ecr63")
+}
+
+[node name="FinishZone" parent="." instance=ExtResource("5_opw0y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017485619, 0.025808692, -18.635477)
+script = ExtResource("7_opw0y")
+
+[node name="Crane" parent="." instance=ExtResource("6_g7sqe")]
+transform = Transform3D(0.56680894, 0, 0.82384926, 0, 1, 0, -0.82384926, 0, 0.56680894, -10.542162, 0, -2.0624404)
+
+[node name="Crane2" parent="." instance=ExtResource("6_g7sqe")]
+transform = Transform3D(-0.013316542, 0, 0.9999112, 0, 1, 0, -0.9999112, 0, -0.013316542, 7.279419, 0, -7.081089)
+
+[node name="CraneControlZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.788349, 0, 0.384621)
+script = ExtResource("7_turoa")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CraneControlZone"]
+transform = Transform3D(0.82679594, 0, -0.5625019, 0, 1, 0, 0.5625019, 0, 0.82679594, 0, 0, 0)
+shape = SubResource("BoxShape3D_mw3i8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CraneControlZone"]
+transform = Transform3D(1.6598437, 0, -0.7539687, 0, 0.5181817, 0, 1.1292573, 0, 1.108224, 0, 0.21104956, 0)
+mesh = SubResource("BoxMesh_kpqvn")
+
+[node name="CraneControlZone2" type="Area3D" parent="."]
+transform = Transform3D(0.81900185, 0, 0.57379085, 0, 1, 0, -0.57379085, 0, 0.81900185, 7.4804044, 0, -4.384229)
+script = ExtResource("7_turoa")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CraneControlZone2"]
+transform = Transform3D(0.82679594, 0, -0.5625019, 0, 1, 0, 0.5625019, 0, 0.82679594, 0, 0, 0)
+shape = SubResource("BoxShape3D_mw3i8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CraneControlZone2"]
+transform = Transform3D(1.6598437, 0, -0.7539687, 0, 0.5181817, 0, 1.1292573, 0, 1.108224, 0, 0.21104956, 0)
+mesh = SubResource("BoxMesh_kpqvn")
+
+[node name="BorderWalls" type="Node3D" parent="."]
+
+[node name="BorderWallNorth" type="StaticBody3D" parent="BorderWalls"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BorderWalls/BorderWallNorth"]
+transform = Transform3D(50, 0, 0, 0, 5, 0, 0, 0, 1, 0, 2.5, -25)
+shape = SubResource("BoxShape3D_ddxw6")
+
+[node name="BorderWallSouth" type="StaticBody3D" parent="BorderWalls"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BorderWalls/BorderWallSouth"]
+transform = Transform3D(50, 0, 0, 0, 5, 0, 0, 0, 1, 0, 2.5, 25)
+shape = SubResource("BoxShape3D_ddxw6")
+
+[node name="BorderWallWest" type="StaticBody3D" parent="BorderWalls"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BorderWalls/BorderWallWest"]
+transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 50, -25, 2.5, 0)
+shape = SubResource("BoxShape3D_ddxw6")
+
+[node name="BorderWallEast" type="StaticBody3D" parent="BorderWalls"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BorderWalls/BorderWallEast"]
+transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 50, 25, 2.5, 0)
+shape = SubResource("BoxShape3D_ddxw6")
+
+[node name="LoadZone" type="Area3D" parent="."]
+transform = Transform3D(-8.700967e-08, 0, 4.1325564, 0, 1, 0, -1.9905491, 0, -1.8063977e-07, 11.691533, 0, -7.0505323)
+script = ExtResource("8_kpqvn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LoadZone"]
+shape = SubResource("BoxShape3D_thei6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LoadZone"]
+transform = Transform3D(1.7627515, 0, 0, 0, 1, 0, 0, 0, 1.7574681, 0, 0, 0)
+mesh = SubResource("BoxMesh_iw2mh")
+skeleton = NodePath("../..")
+
+[node name="LoadZone2" type="Area3D" parent="."]
+transform = Transform3D(1.1720663, 0, 3.3402114, 0, 1, 0, -1.6088964, 0, 2.4333136, -7.096656, 0, 0.28309512)
+script = ExtResource("8_kpqvn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LoadZone2"]
+shape = SubResource("BoxShape3D_thei6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LoadZone2"]
+transform = Transform3D(1.7627515, 0, 0, 0, 1, 0, 0, 0, 1.7574681, 0, 0, 0)
+mesh = SubResource("BoxMesh_iw2mh")
+skeleton = NodePath("../..")
+
+[connection signal="pressed" from="CanvasLayer/StartPanel/VBoxContainer/ButtonStart" to="CanvasLayer/StartPanel" method="_on_button_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/FinishPanel/VBoxContainer/ButtonEnd" to="CanvasLayer/FinishPanel" method="_on_button_end_pressed"]
+[connection signal="body_entered" from="CraneControlZone" to="CraneControlZone" method="_on_body_entered"]
+[connection signal="body_entered" from="CraneControlZone2" to="CraneControlZone2" method="_on_body_entered"]
+[connection signal="body_entered" from="LoadZone" to="LoadZone" method="_on_body_entered"]
+[connection signal="body_entered" from="LoadZone2" to="LoadZone2" method="_on_body_entered"]
