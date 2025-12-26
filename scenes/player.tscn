@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbupdfn2tmfmv"]
+[gd_scene load_steps=7 format=3 uid="uid://dbupdfn2tmfmv"]
 
 [ext_resource type="Script" uid="uid://ch1bkg6cxtirm" path="res://scripts/Player.gd" id="1_3vyb7"]
 [ext_resource type="PackedScene" uid="uid://b8qi7b23wrmkp" path="res://assets/models/worker/model.glb" id="2_g2els"]
 [ext_resource type="PackedScene" uid="uid://dm13ha81tfnsr" path="res://assets/models/helmet/helmet.glb" id="3_dqkch"]
 [ext_resource type="PackedScene" uid="uid://c1ngq7axrrskn" path="res://assets/models/vest.glb" id="4_qlg0r"]
+[ext_resource type="PackedScene" uid="uid://dib5g0haj2v83" path="res://assets/models/toolbox/toolbox.glb" id="5_qlg0r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qhqgy"]
 radius = 0.4
@@ -42,3 +43,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.927946e-05, 0, 0.024188757)
 
 [node name="vest2" parent="Visual/VestVisual" instance=ExtResource("4_qlg0r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0007176399, 0, -0.4421438)
+
+[node name="ToolBoxVisual" type="Node3D" parent="Visual"]
+transform = Transform3D(-1.09, 0, -9.534415e-08, 0, 1.09, 0, 9.534415e-08, 0, -1.09, -0.8921567, 0.16102065, 0.076999724)
+visible = false
+
+[node name="toolbox" parent="Visual/ToolBoxVisual" instance=ExtResource("5_qlg0r")]

@@ -1,8 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://dpcbuebhjwj20"]
+[gd_scene load_steps=20 format=3 uid="uid://dpcbuebhjwj20"]
 
 [ext_resource type="Texture2D" uid="uid://bn43e4grmw5ig" path="res://assets/textures/dirt.png" id="1_l6gr7"]
+[ext_resource type="Script" uid="uid://ds37x68xhjsg4" path="res://scripts/Level2.gd" id="1_qwp14"]
 [ext_resource type="PackedScene" uid="uid://dbupdfn2tmfmv" path="res://scenes/player.tscn" id="2_sp0w3"]
 [ext_resource type="Script" uid="uid://dwvv4elm5d0k" path="res://scripts/StartPanel.gd" id="3_qe5b6"]
+[ext_resource type="PackedScene" uid="uid://cullijbuly2rn" path="res://scenes/danger_zone.tscn" id="4_sp0w3"]
+[ext_resource type="PackedScene" uid="uid://bli03u3dxkr4w" path="res://scenes/tool_box.tscn" id="5_qe5b6"]
+[ext_resource type="PackedScene" uid="uid://coioan6qs2iv5" path="res://scenes/return_zone.tscn" id="5_qwp14"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4p0dt"]
 sky_top_color = Color(0.17014498, 0.5024891, 0.85363823, 1)
@@ -99,6 +103,7 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_3aekd"]
 
 [node name="Level2" type="Node3D"]
+script = ExtResource("1_qwp14")
 
 [node name="Enviorment" type="Node3D" parent="."]
 
@@ -162,12 +167,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Выполните задания в следующем порядке:
 
-1. Наденьте каску
-2. Наденьте защитный жилет
-3. Пройдите в рабочую зону
+1. Возьмите ящик с инструментами
+2. Вернитесь в нужную зону
 
-Нарушение техники безопасности
-приводит к провалу задания."
+ВНИМАНИЕ!
+При прохождение уровня не заходите
+ в опасные зоны, вы можете получить травму!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -227,5 +232,40 @@ shape = SubResource("BoxShape3D_3aekd")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BorderWalls/BorderWallEast"]
 transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 50, 25, 2.5, 0)
 shape = SubResource("BoxShape3D_3aekd")
+
+[node name="ReturnZone" parent="." instance=ExtResource("5_qwp14")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7483773, 0.025808692, 20.607395)
+
+[node name="DangerZones" type="Node3D" parent="."]
+
+[node name="DangerZone" parent="DangerZones" instance=ExtResource("4_sp0w3")]
+transform = Transform3D(-10.227232, 0, 1.6381565, 0, 3.2506406, 0, -2.4617612, 0, -6.8056183, 0, 0, -4.3995733)
+
+[node name="DangerZone2" parent="DangerZones" instance=ExtResource("4_sp0w3")]
+transform = Transform3D(-3.9108067, 0, -6.498266, 0, 3.250641, 0, 9.765355, 0, -2.6024108, -12.777891, 0, -10.097745)
+
+[node name="DangerZone3" parent="DangerZones" instance=ExtResource("4_sp0w3")]
+transform = Transform3D(0.6879958, 0, -7.034359, 0, 3.2506406, 0, 11.687086, 0, 0.4140989, -14.811253, 0, 1.4359941)
+
+[node name="DangerZone4" parent="DangerZones" instance=ExtResource("4_sp0w3")]
+transform = Transform3D(8.071367, 0, 4.4891167, 0, 3.2506406, 0, -6.7460785, 0, 5.371018, -6.8327456, 0, -20.719944)
+
+[node name="DangerZone5" parent="DangerZones" instance=ExtResource("4_sp0w3")]
+transform = Transform3D(-10.205449, 0, 1.6972469, 0, 3.2506406, 0, -2.55056, 0, -6.791123, 5.022156, 0, -19.451536)
+
+[node name="DangerZone6" parent="DangerZones" instance=ExtResource("4_sp0w3")]
+transform = Transform3D(-3.2882235, 0, 7.5256066, 0, 3.2506406, 0, -14.989376, 0, -1.6508944, 14.749617, 0, -10.369254)
+
+[node name="DangerZone7" parent="DangerZones" instance=ExtResource("4_sp0w3")]
+transform = Transform3D(-5.2674594, 0, -6.059181, 0, 3.2506406, 0, 9.105515, 0, -3.5051837, 15.2360325, 0, 3.2889252)
+
+[node name="DangerZone8" parent="DangerZones" instance=ExtResource("4_sp0w3")]
+transform = Transform3D(13.676739, 0, 3.7877026, 0, 3.2506406, 0, -6.9221063, 0, 7.4837656, 3.7755642, 0, 12.981801)
+
+[node name="DangerZone9" parent="DangerZones" instance=ExtResource("4_sp0w3")]
+transform = Transform3D(11.191412, 0, -4.7595615, 0, 3.2506406, 0, 12.154808, 0, 4.3823175, -15.229876, 0, 14.685312)
+
+[node name="ToolBox" parent="." instance=ExtResource("5_qe5b6")]
+transform = Transform3D(-0.9566931, 0, -2.2717752, 0, 2.465, 0, 2.2717752, 0, -0.9566931, 1.7125599, 0.23439115, -13.791537)
 
 [connection signal="pressed" from="CanvasLayer/StartPanel/VBoxContainer/ButtonStart" to="CanvasLayer/StartPanel" method="_on_button_start_pressed"]

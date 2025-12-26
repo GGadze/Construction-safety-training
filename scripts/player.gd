@@ -8,6 +8,7 @@ extends CharacterBody3D
 
 var has_helmet: bool = false
 var has_vest: bool = false
+var has_toolbox := false
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _physics_process(delta):
@@ -56,10 +57,13 @@ func equip_helmet():
     has_helmet = true
     $Visual/HelmetVisual.visible = true
     GameManager.task_manager.submit_action("put_helmet")
-    print("Каска надета")
 
 func equip_vest():
     has_vest = true
     $Visual/VestVisual.visible = true
     GameManager.task_manager.submit_action("put_vest")
-    print("Жилет надет")
+    
+func pick_toolbox():
+    has_toolbox = true
+    $Visual/ToolBoxVisual.visible = true
+    GameManager.task_manager.submit_action("pick_toolbox")

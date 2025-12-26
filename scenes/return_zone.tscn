@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://coioan6qs2iv5"]
+
+[ext_resource type="Script" uid="uid://bepimeef6l8fk" path="res://scripts/return_zone.gd" id="1_fvwml"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qe5b6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fvwml"]
+albedo_color = Color(0.12941177, 1, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xqa3b"]
+material = SubResource("StandardMaterial3D_fvwml")
+
+[node name="ReturnZone" type="Area3D"]
+script = ExtResource("1_fvwml")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_qe5b6")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0813937, 0)
+light_color = Color(0, 1, 0.13725491, 1)
+light_energy = 10.0
+omni_range = 10.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_xqa3b")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cullijbuly2rn"]
 
-[ext_resource type="Script" uid="uid://6bjwewrvyk4a" path="res://scripts/WorkZone.gd" id="1_6qybu"]
+[ext_resource type="Script" uid="uid://282y6ndpqsht" path="res://scripts/DangerZone.gd" id="1_23cf5"]
 [ext_resource type="PackedScene" uid="uid://bu3lkjkhkk81u" path="res://assets/models/warning_tape_model.glb" id="2_ihw8h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bwv4p"]
@@ -8,7 +8,7 @@ size = Vector3(1, 1, 0.7939453)
 
 [node name="DangerZone" type="Area3D"]
 transform = Transform3D(16.006361, 0, 0, 0, 3.2506406, 0, 0, 0, 7, 0, 0, 0)
-script = ExtResource("1_6qybu")
+script = ExtResource("1_23cf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.99999183, 0, 0, 0, 1, 0, 0, 0, 0.9999993, 0, 0.48319763, 0.10302731)
