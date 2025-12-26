@@ -1,24 +1,44 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbupdfn2tmfmv"]
+[gd_scene load_steps=6 format=3 uid="uid://dbupdfn2tmfmv"]
 
 [ext_resource type="Script" uid="uid://ch1bkg6cxtirm" path="res://scripts/Player.gd" id="1_3vyb7"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_g2els"]
+[ext_resource type="PackedScene" uid="uid://b8qi7b23wrmkp" path="res://assets/models/worker/model.glb" id="2_g2els"]
+[ext_resource type="PackedScene" uid="uid://dm13ha81tfnsr" path="res://assets/models/helmet/helmet.glb" id="3_dqkch"]
+[ext_resource type="PackedScene" uid="uid://c1ngq7axrrskn" path="res://assets/models/vest.glb" id="4_qlg0r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qhqgy"]
 radius = 0.4
-height = 1.7
+height = 1.7708985
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_3vyb7")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_g2els")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.9999987, 0, 0.0016230656, 0, 1.0730625, 0, -0.0016230656, 0, -0.9999987, 0, -0.038039215, 0)
 shape = SubResource("CapsuleShape3D_qhqgy")
 
 [node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.96592575, 0.258819, 0, -0.258819, 0.96592575, 0, 0, 3)
+transform = Transform3D(1, 0, 0, 0, 0.9659257, 0.25881898, 0, -0.25881898, 0.9659257, 0, 0, 3)
+
+[node name="Visual" type="Node3D" parent="."]
+transform = Transform3D(-0.9999987, 0, 0.0016230656, 0, 1, 0, -0.0016230656, 0, -0.9999987, 0, 0, 0)
+
+[node name="WorkerModel" parent="Visual" instance=ExtResource("2_g2els")]
+
+[node name="HelmetVisual" type="Node3D" parent="Visual"]
+transform = Transform3D(-0.29, 0, -4.3743057e-08, 0, 0.29, 0, 4.3743057e-08, 0, -0.29, -0.012092684, 0.79157305, -0.021619363)
+visible = false
+
+[node name="Sketchfab_Scene" parent="Visual/HelmetVisual" instance=ExtResource("3_dqkch")]
+
+[node name="VestVisual" type="Node3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6411226, 0.18249291, 0.5549419)
+visible = false
+
+[node name="vest" parent="Visual/VestVisual" instance=ExtResource("4_qlg0r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.927946e-05, 0, 0.024188757)
+
+[node name="vest2" parent="Visual/VestVisual" instance=ExtResource("4_qlg0r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0007176399, 0, -0.4421438)

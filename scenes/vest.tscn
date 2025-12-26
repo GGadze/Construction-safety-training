@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfg35me0dtq2n"]
+
+[ext_resource type="Script" uid="uid://c6j5l24cf3wbl" path="res://scripts/Vest.gd" id="1_ihavm"]
+[ext_resource type="PackedScene" uid="uid://c1ngq7axrrskn" path="res://assets/models/vest.glb" id="2_1ejp7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ihavm"]
+
+[node name="Vest" type="Area3D"]
+transform = Transform3D(2.295, 0, 0, 0, 2.295, 0, 0, 0, 2.295, 0, 0, 0)
+script = ExtResource("1_ihavm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.9989642, 0, 0, 0, 1.1150002, 0, 0, 0, 0.21899617, 0, 0, 0)
+shape = SubResource("BoxShape3D_ihavm")
+
+[node name="vest" parent="." instance=ExtResource("2_1ejp7")]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -0.62073505, 0, 0.34352288)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

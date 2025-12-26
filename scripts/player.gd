@@ -51,3 +51,15 @@ func _unhandled_input(event: InputEvent) -> void:
             deg_to_rad(-40),
             deg_to_rad(40)
         )
+
+func equip_helmet():
+    has_helmet = true
+    $Visual/HelmetVisual.visible = true
+    GameManager.task_manager.submit_action("put_helmet")
+    print("Каска надета")
+
+func equip_vest():
+    has_vest = true
+    $Visual/VestVisual.visible = true
+    GameManager.task_manager.submit_action("put_vest")
+    print("Жилет надет")

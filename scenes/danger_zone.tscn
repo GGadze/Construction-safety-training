@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://cullijbuly2rn"]
+
+[ext_resource type="Script" uid="uid://6bjwewrvyk4a" path="res://scripts/WorkZone.gd" id="1_6qybu"]
+[ext_resource type="PackedScene" uid="uid://bu3lkjkhkk81u" path="res://assets/models/warning_tape_model.glb" id="2_ihw8h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bwv4p"]
+size = Vector3(1, 1, 0.7939453)
+
+[node name="DangerZone" type="Area3D"]
+transform = Transform3D(16.006361, 0, 0, 0, 3.2506406, 0, 0, 0, 7, 0, 0, 0)
+script = ExtResource("1_6qybu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.99999183, 0, 0, 0, 1, 0, 0, 0, 0.9999993, 0, 0.48319763, 0.10302731)
+shape = SubResource("BoxShape3D_bwv4p")
+debug_color = Color(0.54509807, 0, 0, 0.8)
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("2_ihw8h")]
+transform = Transform3D(0.110868335, 0, 0, 0, 0.48773244, 0, 0, 0, 0.9999993, -0.24454473, 0.13520591, 0.5299342)
+
+[node name="Sketchfab_Scene3" parent="." instance=ExtResource("2_ihw8h")]
+transform = Transform3D(-4.846206e-09, 0, 0.99999875, 0, 0.48773244, 0, -0.1108683, 0, -4.3711353e-08, -0.516541, 0.13520591, 0.2544983)
+
+[node name="Sketchfab_Scene4" parent="." instance=ExtResource("2_ihw8h")]
+transform = Transform3D(-4.8462057e-09, 0, 0.9999986, 0, 0.48773244, 0, -0.1108683, 0, -4.3711353e-08, -0.516541, 0.13520591, -0.25323)
+
+[node name="Sketchfab_Scene5" parent="." instance=ExtResource("2_ihw8h")]
+transform = Transform3D(-4.846206e-09, 0, -0.9999985, 0, 0.48773244, 0, 0.1108683, 0, -4.3711328e-08, 0.5087089, 0.13520591, 0.2544983)
+
+[node name="Sketchfab_Scene6" parent="." instance=ExtResource("2_ihw8h")]
+transform = Transform3D(-4.846206e-09, 0, -0.9999984, 0, 0.48773244, 0, 0.1108683, 0, -4.371132e-08, 0.5087089, 0.13520591, -0.25323)
+
+[node name="Sketchfab_Scene2" parent="." instance=ExtResource("2_ihw8h")]
+transform = Transform3D(0.11086835, 0, 0, 0, 0.48773244, 0, 0, 0, 0.9999993, 0.24373181, 0.13520591, 0.5299342)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

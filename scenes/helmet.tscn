@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://41bbf7hpblar"]
+
+[ext_resource type="Script" uid="uid://6jkteu3wrq3r" path="res://scripts/Helmet.gd" id="1_blejd"]
+[ext_resource type="PackedScene" uid="uid://dm13ha81tfnsr" path="res://assets/models/helmet/helmet.glb" id="2_8yy8d"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_07hng"]
+
+[node name="Helmet" type="Area3D"]
+transform = Transform3D(2.295, 0, 0, 0, 2.295, 0, 0, 0, 2.295, 0, 0, 0)
+script = ExtResource("1_blejd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.585, 0, 0, 0, 0.585, 0, 0, 0, 0.585, 0, 0.095, 0.035)
+shape = SubResource("SphereShape3D_07hng")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("2_8yy8d")]
+transform = Transform3D(-0.37500006, 0, -5.6623442e-08, 0, 0.37500006, 0, 5.6623442e-08, 0, -0.37500006, 0, 0, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
