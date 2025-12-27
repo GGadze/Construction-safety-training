@@ -35,7 +35,6 @@ func _physics_process(delta):
         velocity.x = lerp(velocity.x, 0.0, 0.1)
         velocity.z = lerp(velocity.z, 0.0, 0.1)
 
-    # гравитация
     if not is_on_floor():
         velocity.y -= gravity * delta
     else:
@@ -43,10 +42,10 @@ func _physics_process(delta):
             velocity.y = jump_velocity
     if is_on_floor():
         if velocity.length() > 0.1:
-            if anim_player.current_animation != "walking/mixamo_com": # Замени на свое имя
+            if anim_player.current_animation != "walking/mixamo_com":
                 anim_player.play("walking/mixamo_com")
         else:
-            if anim_player.current_animation != "idle/mixamo_com": # Замени на свое имя
+            if anim_player.current_animation != "idle/mixamo_com":
                 anim_player.play("idle/mixamo_com")
                 
     move_and_slide()

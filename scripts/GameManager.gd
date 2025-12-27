@@ -12,7 +12,6 @@ var levels: Array[String] = [
 @onready var task_manager: TaskManager = TaskManager.new()
 @onready var safety_manager: SafetyManager = SafetyManager.new()
 
-# Временное хранилище данных при загрузке
 var pending_load_data: Dictionary = {}
 
 func _ready() -> void:
